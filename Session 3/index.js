@@ -1,7 +1,7 @@
-const square = require("./module");
+const Square = require("./module");
+require("./express");
 
 function main() {
-    console.log(mySquareObject.getArea());
     let mySquareObject = new Square(5);
     console.log("Flaeche: ", mySquareObject.getArea());
 }
