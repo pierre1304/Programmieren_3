@@ -1,4 +1,4 @@
-class Mutant {
+module.exports = class Mutant {
 
     constructor(x, y) {
         this.x = x;

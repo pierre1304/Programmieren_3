@@ -1,26 +1,29 @@
-const grass = require("./grass.js");
+const Grass = require("./grass");
+const Functions = require("./functions.js")
 
-let matrix = [];
+matrix = [];
 let side = 20;
-let grassArr = [];
-let grazerArr = [];
-let predatorArr = [];
-let cannibaleArr = [];
-let mutantArr = [];
+grassArr = [];
+grazerArr = [];
+predatorArr = [];
+cannibaleArr = [];
+mutantArr = [];
 
 function getRandMatrix(cols, rows) {
     let matrix = [];
     for(let y = 0; y < rows; y++) {
         matrix[y] = []; 
         for(let x = 0; x < cols; x++) {
-            matrix[y][x] = Math.round(random(0, 5));
+            matrix[y][x] = Math.round(Math.random() * 5);
+
         }
     }
     return matrix;
 }
 
 function createGame() {  
-    //matrix = getRandMatrix(101, 45);
+    matrix = getRandMatrix(101, 45);
+    console.log(matrix)
     //background(50);
     //frameRate(5);
     for(let y in matrix) {
@@ -30,7 +33,7 @@ function createGame() {
             if(matrix[y][x] == 1) {
                 let grassObj = new Grass(x, y);
                 grassArr.push(grassObj);
-            } else if(matrix[y][x] == 2) {
+            } /*else if(matrix[y][x] == 2) {
                 let grazerObj = new Grazer(x, y);
                 grazerArr.push(grazerObj);
             } else if(matrix[y][x] == 3) {
@@ -42,7 +45,7 @@ function createGame() {
             } else if(matrix[y][x] == 5) {
                 let mutantObj = new Mutant(x, y);
                 mutantArr.push(mutantObj);
-            }
+            }*/
         }
     }
 }
@@ -72,13 +75,8 @@ function update() {
         mutantObj.mutate();
         mutantObj.checkDeath();
     }
+    console.log(matrix)
 }
-
-
-
-
-
-
 
 //server
 const express = require("express");
@@ -86,4 +84,6 @@ const app = express();
 
 app.listen(3000, function(){
     console.log("hallo von Port 3000");
+    createGame();
+    setInterval(update, 1000);
 })

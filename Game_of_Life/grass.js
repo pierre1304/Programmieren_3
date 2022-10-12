@@ -1,4 +1,6 @@
+const functions = require("./functions");
 module.exports = class Grass {
+
 
     constructor(x, y) {
         this.x = x;
@@ -37,7 +39,7 @@ module.exports = class Grass {
         if (this.multiply >= 4) {
             let emptyFields = this.chooseFields(0);
             if (emptyFields.length > 0) {
-                let theChosenField = random(emptyFields);
+                let theChosenField = functions.getRandomArrayElement(emptyFields);
                 let newX = theChosenField[0];
                 let newY = theChosenField[1];
                 let grassObj = new Grass(newX, newY);
